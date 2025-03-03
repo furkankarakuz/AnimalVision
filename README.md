@@ -1,6 +1,8 @@
 # 🐾 AnimalVision
 
 AnimalVision is a deep learning project that uses a Convolutional Neural Network (CNN) to classify animal images. With a dataset of thousands of images and 90 different animal classes, the model achieves high accuracy in predictions.
+![image](https://github.com/user-attachments/assets/10572dae-9988-43b2-a17e-88074df5e858)
+![image](https://github.com/user-attachments/assets/b1265c08-13a5-4f85-9e03-905d55b82fbd)
 
 ---
 
