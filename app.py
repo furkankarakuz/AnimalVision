@@ -1,10 +1,11 @@
 from tensorflow.keras.preprocessing import image as img_proc
+from PIL import Image
 from model_process import load_model, predict_image, json_data
 import streamlit as st
 import warnings
 import altair as alt
 import pandas as pd
-from PIL import Image
+
 
 warnings.filterwarnings('ignore')
 
