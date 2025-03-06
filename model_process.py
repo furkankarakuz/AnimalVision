@@ -4,8 +4,9 @@ import numpy as np
 import huggingface_hub
 
 
+
 @st.cache_resource
-def load_model():
+def huggingface_load_model():
     model_path = huggingface_hub.hf_hub_download("furkankarakuz/AnimalVision", "AnimalVisionModel.keras")
     model = tf.keras.models.load_model(model_path)
 
@@ -14,6 +15,25 @@ def load_model():
         content = file.read()
     animal_list = content.split("\n")
     return model, animal_list
+
+
+@st.cache_resource
+def local_load_model():
+    model = tf.keras.models.load_model("AnimalVisionModel.keras")
+    with open("AnimalList.txt", "r", encoding="utf-8") as file:
+        content = file.read()
+    animal_list = content.split("\n")
+    return model, animal_list
+
+
+@st.cache_resource
+def load_model():
+    try:
+        print("A")
+        return huggingface_load_model()
+    except:
+        print("B")
+        return local_load_model()
 
 
 def predict_image(img, img_proc, model, class_names):
