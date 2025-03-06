@@ -1,14 +1,19 @@
 import tensorflow as tf
 import streamlit as st
 import numpy as np
+import huggingface_hub
 
 
 @st.cache_resource
 def load_model():
-    with open("AnimalList.txt", "r", encoding="utf-8") as file:
+    model_path = huggingface_hub.hf_hub_download("furkankarakuz/AnimalVision", "AnimalVisionModel.keras")
+    model = tf.keras.models.load_model(model_path)
+
+    label_path = huggingface_hub.hf_hub_download("furkankarakuz/AnimalVision", "AnimalList.txt")
+    with open(label_path, "r", encoding="utf-8") as file:
         content = file.read()
     animal_list = content.split("\n")
-    return tf.keras.models.load_model("AnimalVisionModel.keras"), animal_list
+    return model, animal_list
 
 
 def predict_image(img, img_proc, model, class_names):
